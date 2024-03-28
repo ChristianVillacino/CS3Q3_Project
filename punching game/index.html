@@ -11,52 +11,56 @@
         <option value="head">Head</option>
         <option value="tail">Tail</option>
     </select>
+
     <!--Buttons for game actions-->
     <button id="tossCoin" onclick="tossCoin()">Toss Coin</button>
     <button id="atkBut" onclick="playerAttack(); opponentAction(); checkHealth()" disabled>Attack</button>
-    <button id="defBut" onclick="opponentAction(); playerAttack(); checkHealth()" disabled>Defend</button>
+    <button id="defBut" onclick="playerDefend(); opponentAction(); playerAttack(); checkHealth()" disabled>Defend</button>
     <button id="reset" onclick="reset()" disabled>Reset</button>
+    
     <!--divs to display results and actions of the game-->
     <div id="result"></div>
     <div id="firstAction"></div>
     <div id="secondAction"></div>
-    <div id="resultingAction"></div>
-    <!--for health statu-->
+    <div id="resultAction"></div>
+
+    <!--for health status-->
     <p id="playerHealth"></p>
     <p id="opponentHealth"></p>
+    <p id="resultAction"></p>
     
     <script>
-    //Initialize vars for player and opponent health
-    let playerHealth = 100;
-    let opponentHealth = 100;
-    //to track the result of the coin toss
-    let firstAction = false;
-    //to store damage values and opponent's action
-    let playerDamage=0;
-    let opoActvalue = 0;
-    let opoAct = 0;
+        //Initialize vars for player and opponent health
+        let playerHealth = 100;
+        let opponentHealth = 100;
+        //to track the result of the coin toss
+        let firstAction = false;
+        //to store damage values and opponent's action
+        let playerDamage=0;
+        let opoActvalue = 0;
+        let opoAct = 0;
 
-    //Disable reset button INITIALLY
-    document.getElementById("reset").disabled = true;
+        //Disable reset button INITIALLY
+        document.getElementById("reset").disabled = true;
 
-    //function for coin toss
-    function tossCoin() {
-      const selectcoin = document.getElementById('selectcoin');
-      const selectedcoin = selectcoin.value;
-      const coinHorT = Math.random() < 0.5 ? "head" : "tail";
-      const resultText = "Coin is "+ coinHorT + ". " + "You chose " + selectedcoin + "! ";
+        //function for coin toss
+        function tossCoin() {
+            const selectcoin = document.getElementById('selectcoin');
+            const selectedcoin = selectcoin.value;
+            const coinHorT = Math.random() < 0.5 ? "head" : "tail";
+            const resultText = "Coin is "+ coinHorT + ". " + "You chose " + selectedcoin + "! ";
 
-    //check if the player's choice matches that of the coin toss
-      if (selectedcoin === coinHorT) {
-        firstAction = true;
-        document.getElementById('result').innerText = resultText;
-        document.getElementById("atkBut").disabled = false; //enable attack
-        document.getElementById("defBut").disabled = true; //disable defend
-      } else {
-        firstAction = false;
-        document.getElementById('result').innerText = resultText;
-        document.getElementById("atkBut").disabled = false; //enable attack
-        document.getElementById("defBut").disabled = false; //enable defend
+            //check if the player's choice matches that of the coin toss
+            if (selectedcoin === coinHorT) {
+                firstAction = true;
+                document.getElementById('result').innerText = resultText;
+                document.getElementById("atkBut").disabled = false; //enable attack
+                document.getElementById("defBut").disabled = true; //disable defend
+        } else {
+                firstAction = false;
+                document.getElementById('result').innerText = resultText;
+                document.getElementById("atkBut").disabled = false; //enable attack
+                document.getElementById("defBut").disabled = false; //enable defend
       }
 
       document.getElementById("selectcoin").disabled = true;
@@ -69,7 +73,7 @@
         return Math.floor((Math.random() * 5) + 1);
     }
 
-    //For player's attacks
+    //For opponent's attacks
     function opponentAction(){
         opoActvalue = Math.floor(Math.random() * 5);
         opoAct = Math.floor(Math.random() * 2)
@@ -80,6 +84,7 @@
                 break;
             case 1:
                 document.getElementById("secondAction").innerHTML = "<br> The opponent chose to attack!";
+                playerHealth -= calculateDamage(); //reduces the player's health due to the opponent's attack
                 break;
             default:
                 break;
@@ -92,23 +97,30 @@
                 break;
             case 1:
                 document.getElementById("firstAction").innerHTML = "<br> The opponent chose to attack!";
+                playerHealth -= calculateDamage; //reduces the player's health if the opponent attacks
                 break;
             default:
                 break;
             }
         }
+        checkHealth(); //check health after opponent's action
     }
 
+    //for player's attacks
     function playerAttack(){
         playerDamage = calculateDamage();
         if (firstAction == true){
             document.getElementById("firstAction").innerHTML = "<br> The player chose to attack!";
+            opponentHealth -= calculateDamage(); //Update opponent's health
         }
         else {
             document.getElementById("secondAction").innerHTML = "<br> The player chose to attack!";
+            opponentHealth -= calculateDamage(); //update opponent's health
         }
+        checkHealth(); //checks health after each attack
     }
 
+    //for player's defend actions
     function playerDefend(){
         if (opoAct == 0) {
             document.getElementById("resultAction").innerHTML = "<br> The opponent defended too.";
@@ -116,36 +128,64 @@
         else if (opoAct == 1){
             if (opoActvalue < 3) {
                 document.getElementById("resultAction").innerHTML = "<br> The opponent chose to attack!";
+                playerHealth -= calculateDamage; //reduce player's health if opponent attacks;
             }
             else{
                 document.getElementById("resultAction").innerHTML = "<br> The player blocked the opponent's attack!";
             }
         }
+        checkHealth(); //check health after each defense
     }
 
+    //to reset the game
     function reset(){
     playerHealth = 100;
     opponentHealth = 100;
     firstAction = false;
-    playerDamage=0;
+    playerDamage = 0;
     opoActvalue = 0;
-    let opoAct = 0;
-    let damage = 0;
-    
+    opoAct = 0;
+
+    //displayed actions and result
     document.getElementById("firstAction").innerHTML="";
     document.getElementById("secondAction").innerHTML="";
     document.getElementById("resultingAction").innerHTML="";
     document.getElementById('result').innerHTML ="";
-    document.getElementById("selectcoin").disabled = false;
+
+    //enable buttons and reset the coin toss
+     document.getElementById("selectcoin").disabled = false;
     document.getElementById("tossCoin").disabled = false;
+    document.getElementById("atkBut").disabled = true;
+    document.getElementById("defBut").disabled = true;
     document.getElementById("reset").disabled = true;
     }
     
 
-    document.getElementById("playerHealth").innerHTML = "Player's Health: " + playerHealth + "<br>";
-    document.getElementById("opponentHealth").innerHTML = "Opponent's Health: " + opponentHealth + "<br>";
+    //function to disable buttons
+    function disableButtons(){
+        document.getElementById("atkBut").disabled = true;
+        document.getElementById("defBut").disabled = true;
+        document.getElementById("reset").disabled = false; //enable reset button
+    }
+    //function to check health
+    function checkHealth() {
+        document.getElementById("playerHealth").textContent = "Player Health: " + playerHealth;
+        document.getElementById("opponentHealth").textContent = "Opponent Health: " + opponentHealth;
+        if (playerHealth <= 0 || opponentHealth <= 0) {
+            endGame();
+        }
+    }
 
-
+    //function to end the game and display game result
+    function endGame(){
+        let result = playerHealth <= 0 ? "You Lose!" : "You Win!";
+        document.getElementById("resultAction").textContent = result;
+    
+    //disable the buttons after the game ends
+        document.getElementById("atkBut").disabled = true;
+        document.getElementById("defBut").disabled = true;
+        document.getElementById("reset").disabled = false;
+    }
     </script>
 </body>
 </html>
