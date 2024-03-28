@@ -64,6 +64,7 @@
                 receivedDamage = calculateDamage();
                 opponentHealth -= receivedDamage;
                 document.getElementById("resultAction").innerHTML = "<br> Player inflicted " + receivedDamage + " damage.";
+                checkHealth();
             } 
             else {
                 firstAction = false;
@@ -72,6 +73,7 @@
                 receivedDamage = calculateDamage();
                 playerHealth -= receivedDamage;
                 document.getElementById("resultAction").innerHTML = "<br> Opponent inflicted " + receivedDamage + " damage.";
+                checkHealth();
             }
             document.getElementById("atkBut").disabled = false; //enable attack
             document.getElementById("defBut").disabled = false; //disable defend
