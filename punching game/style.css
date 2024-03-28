@@ -54,32 +54,27 @@
     font-size: large;
 }
 
+#result{
+    color:rgb(255, 65, 97);
+    font-size:20px;
+    margin-top:5px;
+}
+
+#firstAction {
+    color:rgb(255, 65, 97);
+    font-size:20px;
+}
+
+#secondAction {
+    color:rgb(255, 65, 97);
+    font-size:20px;
+}
+
+#resultAction{
+    color:rgb(255, 65, 97);
+    font-size:20px;
+}
+
 #playerHealth{
     margin-top:10px;
-}
-
-#div1{
-    width:33.33%;
-    background-color:red;
-    float:left;
-}
-
-
-#div2{
-    background-color:brown;
-    width:33.33%;
-    float:right;
-    text-align:center;
-}
-
-#div3{
-    width:33.33%;
-    background-color: aquamarine;
-    margin:0 auto;
-}
-
-#div4{
-    background-color: rgb(60, 210, 30);
-    width:33.33%;
-    margin:0 auto;
 }
