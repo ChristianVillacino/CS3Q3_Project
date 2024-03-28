@@ -98,7 +98,10 @@
         }
         else if (opoAct == 1){
             if (opoActvalue < 3) {
-                document.getElementById("resultAction")
+                document.getElementById("resultAction").innerHTML = "<br> The opponent chose to attack!";
+            }
+            else{
+                document.getElementById("resultAction").innerHTML = "<br> The player blocked the opponent's attack!";
             }
         }
     }
