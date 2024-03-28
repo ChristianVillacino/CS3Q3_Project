@@ -8,15 +8,8 @@
 </head>
 <body>
     <div class = "container">
-    <div id="div1">
     <p id="playerHealth"></p>
-    </div>
-
-    <div id="div2">
-        <p id="opponentHealth"></p>
-    </div>
-
-    <div id="div3">
+    <p id="opponentHealth"></p>
         <h1 id="title">Toss a Coin</h1>
     <!--Dropdown for coin toss-->
         <select id="selectcoin">
@@ -24,10 +17,6 @@
         <option value="tail">Tail</option>
         </select>
         <button id="tossCoin" onclick="tossCoin()">Toss Coin</button>
-    </div>
-
-    <div id="div4">
-
     <!--Buttons for game actions-->
     <button id="atkBut" onclick="opponentAction(); playerAttack(); checkHealth()" disabled>Attack</button>
     <button id="defBut" onclick="opponentAction(); playerDefend(); checkHealth()" disabled>Defend</button>
