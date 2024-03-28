@@ -8,6 +8,13 @@
   background-color: rgb(255, 222, 228);
 }
 
+.container {
+    background-image: url('images/bgimg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
 #title{
   font-family: 'Cranberry', sans-serif;
   color: rgb(255, 61, 93);
