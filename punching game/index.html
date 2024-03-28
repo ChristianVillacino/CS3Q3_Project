@@ -126,13 +126,12 @@
 
     //for player's defend actions
     function playerDefend(){
-        dmgdefend = Math.floor(Math.random() * 3) + 1;
         oppoAct = calculateDamage();
         if (opoAct == 0) {
             document.getElementById("resultAction").innerHTML = "<br> The opponent defended too.";
         }
         else if (oppoAct == 1){
-            if (oppoAct > dmgdefend) {
+            if (oppoAct > 3) {
                 document.getElementById("secondtAction").innerHTML = "<br> The opponent chose to attack!";
                 document.getElementById("resultAction").innerHTML = "<br> Opponent have inflicted " + oppoDamage + " damage to the player!";
                 playerHealth -= calculateDamage; //reduce player's health if opponent attacks;
