@@ -105,6 +105,24 @@
             }
         }
     }
+
+    function reset(){
+    playerHealth = 100;
+    opponentHealth = 100;
+    firstAction = false;
+    playerDamage=0;
+    opoActvalue = 0;
+    let opoAct = 0;
+    let damage = 0;
+    
+    document.getElementById("firstAction").innerHTML="";
+    document.getElementById("secondAction").innerHTML="";
+    document.getElementById("resultingAction").innerHTML="";
+    document.getElementById('result').innerHTML ="";
+    document.getElementById("selectcoin").disabled = false;
+    document.getElementById("tossCoin").disabled = false;
+    document.getElementById("reset").disabled = true;
+    }
     
 
     document.getElementById("playerHealth").innerHTML = "Player's Health: " + playerHealth + "<br>";
