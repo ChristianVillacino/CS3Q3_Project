@@ -10,13 +10,14 @@
     <div class = "container">
     <p id="playerHealth"></p>
     <p id="opponentHealth"></p>
-        <h1 id="title">Toss a Coin</h1>
+    <h1 id="title">Toss a Coin</h1>
     <!--Dropdown for coin toss-->
-        <select id="selectcoin">
+    <select id="selectcoin">
         <option value="head">Head</option>
         <option value="tail">Tail</option>
-        </select>
-        <button id="tossCoin" onclick="tossCoin()">Toss Coin</button>
+    </select>
+    <button id="tossCoin" onclick="tossCoin()">Toss Coin</button>
+
     <!--Buttons for game actions-->
     <button id="atkBut" onclick="opponentAction(); playerAttack(); checkHealth()" disabled>Attack</button>
     <button id="defBut" onclick="opponentAction(); playerDefend(); checkHealth()" disabled>Defend</button>
@@ -59,10 +60,18 @@
             if (selectedcoin === coinHorT) {
                 firstAction = true;
                 document.getElementById('result').innerText = resultText;
+                document.getElementById("firstAction").innerHTML = "<br> The player gets to attack first!";
+                receivedDamage = calculateDamage();
+                opponentHealth -= receivedDamage;
+                document.getElementById("resultAction").innerHTML = "<br> Player inflicted " + receivedDamage + " damage.";
             } 
             else {
                 firstAction = false;
                 document.getElementById('result').innerText = resultText;
+                document.getElementById("firstAction").innerHTML = "<br> The opponent gets to attack first!";
+                receivedDamage = calculateDamage();
+                playerHealth -= receivedDamage;
+                document.getElementById("resultAction").innerHTML = "<br> Opponent inflicted " + receivedDamage + " damage.";
             }
             document.getElementById("atkBut").disabled = false; //enable attack
             document.getElementById("defBut").disabled = false; //disable defend
@@ -176,6 +185,8 @@
     document.getElementById("secondAction").innerHTML="";
     document.getElementById("resultAction").innerHTML="";
     document.getElementById('result').innerHTML ="";
+    document.getElementById("playerHealth").innerHTML = "";
+    document.getElementById("opponentHealth").innerHTML = "";
 
     //enable buttons and reset the coin toss
      document.getElementById("selectcoin").disabled = false;
@@ -197,6 +208,12 @@
         document.getElementById("playerHealth").textContent = "Player Health: " + playerHealth;
         document.getElementById("opponentHealth").textContent = "Opponent Health: " + opponentHealth;
         if (playerHealth <= 0 || opponentHealth <= 0) {
+            if (playerHealth <=0){
+                playerHealth = 0;
+            }
+            else if (opponentHealth <=0) {
+                opponentHealth = 0;
+            }
             endGame();
         }
     }
@@ -212,6 +229,6 @@
         document.getElementById("reset").disabled = false;
     }
     </script>
-</div>
+    </div>
 </body>
 </html>
