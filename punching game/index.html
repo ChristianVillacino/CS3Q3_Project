@@ -11,8 +11,8 @@
         <option value="tail">Tail</option>
     </select>
     <button id="tossCoin" onclick="tossCoin()">Toss Coin</button>
-    <button id="atkBut" onclick="playerAttack(); opponentAction(); checkHealth()">Attack</button>
-    <button id="defBut" onclick="opponentAction(); playerAttack(); checkHealth()">Defend</button>
+    <button id="atkBut" onclick="playerAttack(); opponentAction(); checkHealth()" disabled>Attack</button>
+    <button id="defBut" onclick="opponentAction(); playerAttack(); checkHealth()" disabled>Defend</button>
     <button id="reset" onclick="reset()">Reset</button>
     <div id="result"></div>
     <div id="firstAction"></div>
