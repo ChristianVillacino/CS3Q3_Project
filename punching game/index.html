@@ -113,10 +113,12 @@
         playerDamage = calculateDamage();
         if (firstAction == true){
             document.getElementById("firstAction").innerHTML = "<br> The player chose to attack!";
+            document.getElementById("resultAction").innerHTML = "<br> You have inflicted " + playerDamage + " damage to the oppoenent!";
             opponentHealth -= calculateDamage(); //Update opponent's health
         }
         else {
-            document.getElementById("secondAction").innerHTML = "<br> The player chose to attack!";
+            document.getElementById("firstAction").innerHTML = "<br> The player chose to attack!";
+            document.getElementById("resultAction").innerHTML = "<br> You have inflicted " + playerDamage + " damage to the oppoenent!";
             opponentHealth -= calculateDamage(); //update opponent's health
         }
         checkHealth(); //checks health after each attack
@@ -124,12 +126,15 @@
 
     //for player's defend actions
     function playerDefend(){
+        dmgdefend = Math.floor(Math.random() * 3) + 1;
+        oppoAct = calculateDamage();
         if (opoAct == 0) {
             document.getElementById("resultAction").innerHTML = "<br> The opponent defended too.";
         }
-        else if (opoAct == 1){
-            if (opoActvalue < 3) {
-                document.getElementById("resultAction").innerHTML = "<br> The opponent chose to attack!";
+        else if (oppoAct == 1){
+            if (oppoAct > dmgdefend) {
+                document.getElementById("secondtAction").innerHTML = "<br> The opponent chose to attack!";
+                document.getElementById("resultAction").innerHTML = "<br> Opponent have inflicted " + oppoDamage + " damage to the player!";
                 playerHealth -= calculateDamage; //reduce player's health if opponent attacks;
             }
             else{
