@@ -14,10 +14,6 @@
   font-size: 50px;
 }
 
-#selectcoin{
-
-}
-
 #tossCoin{
     font-family: 'Tourney', sans-serif;
     color: rgb(255, 255, 255);
@@ -48,4 +44,34 @@
     padding: 10px;
     font-weight: 1000;
     font-size: large;
+}
+
+#playerHealth{
+    background-color:white;
+    margin-top:10px;
+}
+
+#div1{
+    width:33.33%;
+    background-color:red;
+}
+
+
+#div2{
+    background-color:brown;
+    width:33.33%;
+    float:right;
+    text-align:center;
+}
+
+#div3{
+    width:33.33%;
+    background-color: aquamarine;
+    margin:0 auto;
+}
+
+#div4{
+    background-color: rgb(60, 210, 30);
+    width:33.33%;
+    margin:0 auto;
 }
