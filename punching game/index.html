@@ -11,8 +11,9 @@
         <option value="tail">Tail</option>
     </select>
     <button id="tossCoin" onclick="tossCoin()">Toss Coin</button>
-    <button id="atkBut" onclick="playerAttack(); opponentAction()">Attack</button>
-    <button id="defBut" onclick="opponentAction(); playerAttack()">Defend</button>
+    <button id="atkBut" onclick="playerAttack(); opponentAction(); checkHealth()">Attack</button>
+    <button id="defBut" onclick="opponentAction(); playerAttack(); checkHealth()">Defend</button>
+    <button id="reset" onclick="reset()">Reset</button>
     <div id="result"></div>
     <div id="firstAction"></div>
     <div id="secondAction"></div>
@@ -27,6 +28,7 @@
     let opoActvalue = 0;
     let opoAct = 0;
     let damage = 0;
+    document.getElementById("reset").disabled = true;
 
     function tossCoin() {
       const selectcoin = document.getElementById('selectcoin');
@@ -44,6 +46,7 @@
 
       document.getElementById("selectcoin").disabled = true;
       document.getElementById("tossCoin").disabled = true;
+      document.getElementById("reset").disabled = false;
     }
 
     function calculateDamage(){
