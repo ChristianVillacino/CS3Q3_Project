@@ -10,4 +10,16 @@
 #title{
   font-family: 'Cranberry', sans-serif;
   color: rgb(255, 107, 132);
+  font-size: 50px;
+}
+
+#atkBut{
+    font-family: 'Pixelify Sans', sans-serif;
+    color: #ff00aa;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: 1000;
+    font-size: large;
 }
